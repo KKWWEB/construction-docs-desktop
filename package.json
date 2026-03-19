@@ -1,6 +1,6 @@
 {
   "name": "construction-docs-desktop",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "건설 통합결재 시스템 데스크톱 앱",
   "main": "main.js",
   "author": "Joosan Construction",

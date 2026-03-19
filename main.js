@@ -6,7 +6,7 @@ const os = require('os')
 // ─────────────────────────────────────────────────────────────────────────────
 // 설정
 // ─────────────────────────────────────────────────────────────────────────────
-const APP_URL = 'https://www.joosan777.com'  // 실제 웹앱 URL
+const APP_URL = 'https://app.total-con.com'  // 실제 웹앱 URL
 const APP_NAME = '건설 통합결재'
 const APP_VERSION = app.getVersion()
 

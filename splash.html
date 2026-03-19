@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>건설 통합결재</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: 'Apple SD Gothic Neo', 'Noto Sans KR', -apple-system, sans-serif;
+      background: transparent;
+      display: flex; align-items: center; justify-content: center;
+      height: 100vh;
+      overflow: hidden;
+      -webkit-app-region: drag;
+    }
+    .splash {
+      width: 480px; height: 300px;
+      background: linear-gradient(135deg, #0f172a 0%, #1e3a5f 60%, #0d3b6e 100%);
+      border-radius: 20px;
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+      box-shadow: 0 32px 80px rgba(0,0,0,0.6);
+      border: 1px solid rgba(255,255,255,0.08);
+      position: relative;
+      overflow: hidden;
+    }
+    /* 배경 장식 */
+    .bg-blob1 {
+      position: absolute; width: 300px; height: 300px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(59,130,246,.2) 0%, transparent 70%);
+      top: -100px; right: -60px;
+    }
+    .bg-blob2 {
+      position: absolute; width: 200px; height: 200px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(99,102,241,.15) 0%, transparent 70%);
+      bottom: -60px; left: -40px;
+    }
+    /* 로고 */
+    .logo-wrap {
+      position: relative; z-index: 1;
+      display: flex; align-items: center; gap: 14px;
+      margin-bottom: 24px;
+    }
+    .logo-icon {
+      width: 56px; height: 56px;
+      background: linear-gradient(135deg, #2563eb, #0ea5e9);
+      border-radius: 16px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 28px;
+      box-shadow: 0 8px 24px rgba(37,99,235,0.4);
+    }
+    .logo-text { display: flex; flex-direction: column; }
+    .logo-main { font-size: 22px; font-weight: 800; color: #fff; letter-spacing: -0.5px; }
+    .logo-sub { font-size: 12px; color: rgba(255,255,255,0.5); margin-top: 2px; }
+    /* 로딩 바 */
+    .loading-wrap {
+      position: relative; z-index: 1;
+      width: 240px;
+    }
+    .loading-bar-bg {
+      height: 4px;
+      background: rgba(255,255,255,0.1);
+      border-radius: 2px;
+      overflow: hidden;
+    }
+    .loading-bar {
+      height: 100%;
+      background: linear-gradient(90deg, #2563eb, #0ea5e9, #2563eb);
+      background-size: 200% 100%;
+      border-radius: 2px;
+      animation: shimmer 1.5s infinite;
+      width: 0%;
+      transition: width 0.3s ease;
+    }
+    .loading-text {
+      text-align: center;
+      color: rgba(255,255,255,0.45);
+      font-size: 12px;
+      margin-top: 10px;
+    }
+    /* 버전 */
+    .version {
+      position: absolute; bottom: 16px; right: 20px;
+      font-size: 11px; color: rgba(255,255,255,0.25);
+      z-index: 1;
+    }
+    @keyframes shimmer {
+      0% { background-position: -200% 0; }
+      100% { background-position: 200% 0; }
+    }
+  </style>
+</head>
+<body>
+  <div class="splash">
+    <div class="bg-blob1"></div>
+    <div class="bg-blob2"></div>
+
+    <div class="logo-wrap">
+      <div class="logo-icon">🏗</div>
+      <div class="logo-text">
+        <div class="logo-main">건설 통합결재</div>
+        <div class="logo-sub">중소 건설사 스마트 업무 플랫폼</div>
+      </div>
+    </div>
+
+    <div class="loading-wrap">
+      <div class="loading-bar-bg">
+        <div class="loading-bar" id="bar"></div>
+      </div>
+      <div class="loading-text" id="loadingText">서버에 연결하는 중...</div>
+    </div>
+
+    <div class="version">v1.0.0</div>
+  </div>
+
+  <script>
+    const bar = document.getElementById('bar')
+    const loadingText = document.getElementById('loadingText')
+    const messages = [
+      '서버에 연결하는 중...',
+      '데이터를 불러오는 중...',
+      '준비 중...'
+    ]
+    let progress = 0
+    let msgIdx = 0
+
+    const interval = setInterval(() => {
+      progress += Math.random() * 20 + 10
+      if (progress > 90) progress = 90
+      bar.style.width = progress + '%'
+      
+      msgIdx = Math.min(Math.floor(progress / 35), messages.length - 1)
+      loadingText.textContent = messages[msgIdx]
+    }, 600)
+
+    // 외부에서 완료 신호 받으면 100%로
+    window.setSplashDone = () => {
+      clearInterval(interval)
+      bar.style.width = '100%'
+      loadingText.textContent = '완료!'
+    }
+  </script>
+</body>
+</html>

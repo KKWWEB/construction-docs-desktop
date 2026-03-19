@@ -40,7 +40,7 @@
       "target": [
         {
           "target": "nsis",
-          "arch": ["x64", "ia32"]
+          "arch": ["x64"]
         },
         {
           "target": "portable",
@@ -48,7 +48,7 @@
         }
       ],
       "icon": "assets/icon.ico",
-      "requestedExecutionLevel": "requireAdministrator"
+      "requestedExecutionLevel": "asInvoker"
     },
     "nsis": {
       "oneClick": false,
@@ -58,11 +58,7 @@
       "installerHeaderIcon": "assets/icon.ico",
       "createDesktopShortcut": true,
       "createStartMenuShortcut": true,
-      "shortcutName": "건설 통합결재",
-      "include": "installer.nsh",
-      "unicode": true,
-      "installerLanguages": ["Korean"],
-      "language": "1042"
+      "shortcutName": "건설 통합결재"
     },
     "mac": {
       "target": "dmg",
@@ -76,7 +72,7 @@
     },
     "publish": {
       "provider": "github",
-      "owner": "joosan777",
+      "owner": "KKWWEB",
       "repo": "construction-docs-desktop"
     }
   }
